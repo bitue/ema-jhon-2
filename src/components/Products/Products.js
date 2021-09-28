@@ -29,7 +29,7 @@ const Products = (props) => {
                             <h1>{props.bit.star}</h1>
                         </div>
                         <div>
-                            <h3 className='font-bold text-1xl text-yellow-400'>Features</h3>
+                            <h3 className='font-bold text-1xl text-yellow-500'>Features</h3>
                             <ul>
                                 {
                                     props.bit.features.map(feature => <li className=''>*{feature.description}</li>)

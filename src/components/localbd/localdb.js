@@ -1,28 +1,41 @@
+let obj={}
 
-let objectOfKeys ={}
-const cartToLocal = (arrayOfCart) => {
-    if (arrayOfCart.length) {
-        let array_of_cart_JSON = JSON.stringify(arrayOfCart)
-        localStorage.setItem('shopping_cart', array_of_cart_JSON)
-
-
+const checkLocal = () => {
+    if(localStorage.getItem('cart')){
+        return JSON.parse(localStorage.getItem('cart'))
     }
-
-
-}
-
-
-
-
-
-const check_local_storage = () => {
-    if (localStorage.getItem('shopping_cart')) {
-        let cart = JSON.parse(localStorage.getItem('shopping_cart'))
-        return cart
-    }
-    else {
+    else{
         return {}
     }
 }
 
-export { cartToLocal, check_local_storage }
+const arrayToObject = (keyArray) => {
+    for(let i of keyArray){
+        if(Object.keys(obj).length===0){
+            obj[i]=1;
+        }
+        else{
+            if(Object.keys(obj).includes(i)){
+                obj[i]=obj[i]+1
+            }
+            else{
+                obj[i]=1;
+            }
+        }
+
+    }
+    let newObj = {...obj}
+    for(let i in obj){
+        delete obj[i]
+    }
+    localStorage.setItem('cart',JSON.stringify(newObj))
+
+   console.log(obj,newObj)
+
+   return newObj
+}
+
+
+
+export {arrayToObject}
+
